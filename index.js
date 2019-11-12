@@ -32,6 +32,20 @@ server.post("/api/users", (req, res) => {
   }
 });
 
+server.get("/api/users", (req, res) => {
+  users
+    .find()
+    .then(users => {
+      res.status(200).json(users);
+    })
+    .catch(err => {
+      res.status(500).json({
+        err,
+        err: "the users information could not be retrieved"
+      });
+    });
+});
+
 server.listen(8000, () =>
   console.log("Holy Toledo Batman, we're up and running on port 8k")
 );
